@@ -1,10 +1,12 @@
 import type React from "react"; 
 import { useContext } from "react"
 import { myContext } from "./Context"
+import { useNavigate } from "react-router-dom";
 import './InputsStles.css'
 
 const Inputs = () => {
   const context = useContext(myContext)
+  const navigate = useNavigate();
   if(!context) return null;
   
   const {
@@ -28,6 +30,7 @@ const Inputs = () => {
   const hendelSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await fetchData();
+    navigate("/quiz");
   }
   return (
     <><form className="form" onSubmit={hendelSubmit}>
