@@ -1,6 +1,5 @@
 import {
   createContext,
-  useEffect,
   useMemo,
   useState,
   useRef,
@@ -38,16 +37,11 @@ const Context = ({ children }: { children: ReactNode }) => {
   const [score, setScore] = useState<number>(0);
 
   const [num, setNum] = useState<number>(10);
-  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">(
-    "easy"
-  );
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
   const [category, setCategory] = useState<string>("27");
-  const inFlightRef = useRef(false);
   const [answers, setAnswers] = useState<string[]>([]);
+  const inFlightRef = useRef(false);
 
-  useEffect(() => {
-    console.log("list updated:", list);
-  }, [list]);
   function shuffleArray<T>(array: T[]): T[] {
     const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -76,7 +70,7 @@ const Context = ({ children }: { children: ReactNode }) => {
 
         if (res.status === 429) {
           attempts++;
-          if (attempts > 3)
+          if (attempts > 4 )
             throw new Error("Rate limited (429) - too many attempts");
           continue;
         }
