@@ -6,6 +6,5 @@ export type question = {
     question:string,
     correct_answer:string,
     all_answers:string[],
-
     chosen_answers?: string[];
 }

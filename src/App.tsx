@@ -12,7 +12,7 @@ function App() {
     <>
       <Context>
         <BrowserRouter>
-          <ToastContainer autoClose={2500}/>
+          <ToastContainer autoClose={1350}/>
           <Routes>
             <Route path="/" element={<Inputs />} />
             <Route path="/body" element={<Body/>} />

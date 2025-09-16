@@ -10,10 +10,9 @@ export default function Result() {
 
   const { score, num, setScore, setList, setQuestion } = ctx;
   const pct = num > 0 ? Math.round((score / num) * 100) : 0;
-  const win = pct >= 70; // סף ניצחון
+  const win = pct >= 70;
 
   const playAgain = () => {
-    // אפס בסיסי — אתה יכול להשאיר או לאפס גם list/שאלה לפי הזרימה שלך
     setScore(0);
     setList([]);
     setQuestion(null);
@@ -30,9 +29,15 @@ export default function Result() {
       </p>
       <div className="result-actions">
         <button className="primary" onClick={playAgain}>Play Again</button>
-        <button className="secondary" onClick={() => navigate("/quiz")}>Back to Quiz</button>
+        <button className="secondary" onClick={() => navigate("/quiz")}>Back to Quiz</button>{/*  need to think about that...  */}
         <button className="secondary" onClick={() => navigate("/")}>Home</button>
       </div>
     </div>
   );
 }
+  // const NewGame = async () => {
+  //   setActiv(true);
+  //   setCount(1);
+  //   setSelected(null);
+  //   navigate("/");
+  // };
