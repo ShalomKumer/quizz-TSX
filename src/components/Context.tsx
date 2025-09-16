@@ -49,10 +49,10 @@ const Context = ({ children }: { children: ReactNode }) => {
     console.log("list updated:", list);
   }, [list]);
   function shuffleArray<T>(array: T[]): T[] {
-    const arr = [...array]
+    const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]]
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
   }
@@ -88,7 +88,6 @@ const Context = ({ children }: { children: ReactNode }) => {
             q.correct_answer,
             ...q.incorrect_answers,
           ]);
-
           const creatQ: question = {
             id: index,
             type: q.type,
@@ -97,9 +96,9 @@ const Context = ({ children }: { children: ReactNode }) => {
             question: q.question,
             correct_answer: q.correct_answer,
             all_answers: allAnswers,
-            chosen_answers: answers,
+            chosen_answers: [], 
+            currect: false,
           };
-
           return creatQ;
         });
 
@@ -134,7 +133,7 @@ const Context = ({ children }: { children: ReactNode }) => {
       answers,
       setAnswers,
     };
-  }, [list, question, score, num, difficulty, category,   , fetchData]);
+  }, [list, question, score, num, difficulty, category, fetchData]);
 
   return <myContext.Provider value={value}>{children}</myContext.Provider>;
 };

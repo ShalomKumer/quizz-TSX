@@ -29,7 +29,7 @@ export default function Result() {
       </p>
       <div className="result-actions">
         <button className="primary" onClick={playAgain}>Play Again</button>
-        <button className="secondary" onClick={() => navigate("/quiz")}>Back to Quiz</button>{/*  need to think about that...  */}
+        {/* <button className="secondary" onClick={() => navigate("/quiz")}>Back to Quiz</button> need to think about that...  */}
         <button className="secondary" onClick={() => navigate("/")}>Home</button>
       </div>
     </div>

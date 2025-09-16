@@ -1,46 +1,44 @@
-import { useContext } from "react";
-import { myContext } from "./Context";
+import React from "react";
 import type { question } from "./Typs";
 
-type listProp = {
-  q: question;
+type ListProps = {
+  q: question | null;
   hendlLiClick: (ans: string) => void;
   selected: string | null;
 };
 
-const Ul: React.FC<listProp> = ({ hendlLiClick, selected }) => {
-  const ctx = useContext(myContext);
-  if (!ctx) return null;
-  const { question, answers, setAnswers} = ctx;
-  console.log(`q`,question)
-  console.log(`q.A`,question?.chosen_answers)
-  console.log(`selcted`,selected)
+const Ul: React.FC<ListProps> = ({ q, hendlLiClick }) => {
+  if (!q) return null;
+
   return (
-    <>
-      <ul className="answers">
-        {question?.all_answers?.map((ans: string, index: number) => {
-          const picked = selected === ans;
-          const pickedClass =
-            picked && question
-              ? ans === question.correct_answer
-                ? "picked-correct"
-                : "picked-wrong"
-              : "";
-          return (
-            <li key={index}>
-              <button
-                type="button"
-                className={`answer-btn ${pickedClass}`}
-                onClick={() => hendlLiClick(ans)}
-                disabled={picked}
-              >
-                {ans}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+    <ul className="answers">
+      {q.all_answers.map((ans, index) => {
+        const chosen = q.chosen_answers ?? [];
+        const isCorrect = ans === q.correct_answer;
+        const wasPickedWrong = chosen.includes(ans) && !isCorrect;
+        const showCorrect = (q.currect ?? false) && isCorrect;
+
+        const pickedClass = showCorrect
+          ? "picked-correct"
+          : wasPickedWrong
+          ? "picked-wrong"
+          : "";
+        const disabled = q.currect === true;
+
+        return (
+          <li key={index}>
+            <button
+              type="button"
+              className={`answer-btn ${pickedClass}`}
+              onClick={() => hendlLiClick(ans)}
+              disabled={disabled}
+            >
+              {ans}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
