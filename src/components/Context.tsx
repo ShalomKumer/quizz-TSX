@@ -25,6 +25,8 @@ type myContextProp = {
   >;
   category: string;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
+  answers: string;
+  setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
   fetchData: () => Promise<void>;
 };
 
@@ -41,6 +43,7 @@ const Context = ({ children }: { children: ReactNode }) => {
   );
   const [category, setCategory] = useState<string>("27");
   const inFlightRef = useRef(false);
+  const [answers, setAnswers] = useState<string[]>([]);
 
   useEffect(() => {
     console.log("list updated:", list);
@@ -94,6 +97,7 @@ const Context = ({ children }: { children: ReactNode }) => {
             question: q.question,
             correct_answer: q.correct_answer,
             all_answers: allAnswers,
+            chosen_answers: answers,
           };
 
           return creatQ;
@@ -103,9 +107,9 @@ const Context = ({ children }: { children: ReactNode }) => {
         setQuestion(preList[0] ?? null);
         break;
       }
-      toast.success(`New Game`)
+      toast.success(`New Game`);
     } catch (err) {
-      toast.error(`${err}`)
+      toast.error(`${err}`);
       console.log(`ERROR: ${err}`);
     } finally {
       inFlightRef.current = false;
@@ -127,8 +131,10 @@ const Context = ({ children }: { children: ReactNode }) => {
       category,
       setCategory,
       fetchData,
+      answers,
+      setAnswers,
     };
-  }, [list, question, score, num, difficulty, category, fetchData]);
+  }, [list, question, score, num, difficulty, category, answers, fetchData]);
 
   return <myContext.Provider value={value}>{children}</myContext.Provider>;
 };
