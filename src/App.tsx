@@ -13,7 +13,6 @@ function App() {
         <BrowserRouter>
           <ToastContainer />
           <Routes>
-            <h1>WellCome To The Quizz <strong>2025!</strong></h1>
             <Route path="/" element={<Inputs />} />
             <Route path="/body" element={<Body/>} />
           </Routes>
