@@ -71,7 +71,9 @@ const Body = () => {
 
   const NextBtb = () => {
     if (!question) return;
-    const currentIndex = list.findIndex((q) => q.question === question.question);
+    const currentIndex = list.findIndex(
+      (q) => q.question === question.question
+    );
     const nextIndex = currentIndex + 1;
 
     if (nextIndex < list.length) {
@@ -90,7 +92,9 @@ const Body = () => {
   const BackBtb = () => {
     if (!question) return;
 
-    const currentIndex = list.findIndex((q) => q.question === question.question);
+    const currentIndex = list.findIndex(
+      (q) => q.question === question.question
+    );
     const backIndex = currentIndex - 1;
 
     if (backIndex >= 0) {
@@ -125,7 +129,8 @@ const Body = () => {
           <strong className="pill">
             {count}/{num}
           </strong>{" "}
-          · Category: <strong className="pill">{category}</strong>
+          · Category:{" "}
+          <strong className="pill">{question?.category ?? "Any"}</strong>
         </p>
       </header>
 
@@ -135,7 +140,11 @@ const Body = () => {
         </div>
 
         <div className="ulList">
-          <Ul q={question ?? null} hendlLiClick={hendlLiClick} selected={selected} />
+          <Ul
+            q={question ?? null}
+            hendlLiClick={hendlLiClick}
+            selected={selected}
+          />
         </div>
 
         <div className="actions">
