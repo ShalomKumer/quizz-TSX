@@ -20,7 +20,6 @@ const Body = () => {
     setQuestion,
     difficulty,
     num,
-    category,
     // score,
     setScore,
     // answers,
